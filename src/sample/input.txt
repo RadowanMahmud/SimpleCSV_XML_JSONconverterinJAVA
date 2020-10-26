@@ -1,0 +1,3 @@
+radowan,1002,iit
+dip,1001,iit
+sadi,1003,iit
