@@ -15,6 +15,8 @@ public class Controller {
     CheckBox XML, JSON, CSV;
     File file;
 
+    strategy stat = new strategy();
+
     public void chooseFile()
     {
         FileChooser fileChooser = new FileChooser();
@@ -33,12 +35,18 @@ public class Controller {
     }
 
     public void convert() throws Exception {
-        if(XML.isSelected())
-            new ConvertXML().convertGivenFile(new File(file.getAbsolutePath() + "_output.XML"));
-        if(JSON.isSelected())
-            new ConvertJson().convertGivenFile(new File(file.getAbsolutePath() + "_output.JSON"));
-        if(CSV.isSelected())
-            new ConvertToCSV().convertGivenFile(new File(file.getAbsolutePath() + "_output.CSV"));
+        if(file == null){
+            return ;
+        }
+        if(XML.isSelected()){
+            stat.convert(new ConvertXML(), file, "xml");
+        }
+        if(JSON.isSelected()){
+            stat.convert(new ConvertJson(), file, "json");
+        }
+        if(CSV.isSelected()) {
+            stat.convert(new ConvertToCSV(),file,"csv");
+        }
 
         chooseFile.setText("Converted");
     }
